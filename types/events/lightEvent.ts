@@ -1,5 +1,5 @@
 import { Event } from '../timeline'
 
-export interface CameraEvent extends Event {
+export interface LightEvent extends Event {
   type: 'lightEvent'
 }
