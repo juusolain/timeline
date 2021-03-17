@@ -1,25 +1,25 @@
-import PouchDB from 'pouchdb'
-import path from 'path'
-import os from 'os'
-import config from '../../../config.json'
-
-const dataFolder = config.dataFolder || path.resolve(os.homedir(), 'timeline', 'data')
-
-const DBConstructor = PouchDB.defaults({ prefix: dataFolder })
+import { ProjectState } from '../types/projectState'
+import { IProject, ProjectCollection } from '../../../types/project'
+import { projectCollection } from './dbSetup'
 
 class DBManager {
-  private db: PouchDB.Database
+  private projectStates: Record<string, PouchDB.Database>
 
-  public async loadProject(name: string): Promise<void> {
-    if (this.db) {
-      await this.db.close()
-    }
-    this.db = new DBConstructor(name)
+  public async getAllProjects(): Promise<IProject[]> {
+    return projectCollection.find({})
   }
 
-  public getDB(): PouchDB.Database {
-    return this.db
+  public async getProjectByName(projectID: string): Promise<IProject> {
+    return projectCollection.findOne({ _id: projectID })
+  }
+
+  public async getProjectState(projectID: string) {
+    if (this.dbs.hasOwnProperty(projectID)) {
+      return this.dbs[projectID]
+    } else {
+      return null
+    }
   }
 }
 
-export { DBConstructor, DBManager }
+export { DBManager }

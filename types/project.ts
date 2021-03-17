@@ -1,8 +1,9 @@
-import { Timecode } from './timecode'
-import { Timeline } from './timeline'
+import { IModel, PouchCollection, PouchORM } from 'pouchorm'
 
-export interface Project {
+export interface IProject extends IModel {
   name: string
-  timelines: Timeline[]
-  timecodes: Timecode[]
+  dbName: string
+  createDate: Date
 }
+
+export class ProjectCollection extends PouchCollection<IProject> {

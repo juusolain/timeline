@@ -1,6 +1,6 @@
 import Express from 'express'
 import { RequestHandler } from 'express'
-import pouchdb from './middleware/pouchdb'
+import pouchdb from './routes/pouchdb'
 
 export class WebServer {
   private app = Express()

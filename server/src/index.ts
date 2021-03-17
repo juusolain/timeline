@@ -3,10 +3,10 @@ import { ProjectManager } from './projectManager'
 import { WebServer } from './webServer'
 import { DBManager } from './dbManager'
 
-const webSocketServer = new WebSocketServer()
-const projectManager = new ProjectManager()
-const dbManager = new DBManager()
-const webServer = new WebServer()
+export const webSocketServer = new WebSocketServer()
+export const projectManager = new ProjectManager()
+export const dbManager = new DBManager()
+export const webServer = new WebServer()
 
 async function start() {}
 

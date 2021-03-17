@@ -7,8 +7,10 @@ type ProjectProps = {
 }
 
 function Project(props: ProjectProps) {
+  const dbAddress = new URL(props.projectName, window.location.origin)
+
   return (
-    <PouchDB name={props.projectName}>
+    <PouchDB name={dbAddress}>
       <Suspense fallback="loading...">
         <div className={styles.main}>Hi</div>
       </Suspense>
